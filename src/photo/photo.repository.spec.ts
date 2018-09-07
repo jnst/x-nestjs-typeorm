@@ -1,13 +1,13 @@
-import {Connection, createConnection, Repository} from 'typeorm';
-import {Photo} from './photo.entity';
+import {Connection, createConnection} from 'typeorm';
+import {PhotoRepository} from './photo.repository';
 
 describe('PhotoRepository', () => {
   let connection: Connection;
-  let photoRepository: Repository<Photo>;
+  let photoRepository: PhotoRepository;
 
   beforeAll(async () => {
     connection = await createConnection();
-    photoRepository = connection.getRepository(Photo);
+    photoRepository = connection.getCustomRepository(PhotoRepository);
 
     const photo = photoRepository.create({
       name: 'name',
@@ -27,4 +27,12 @@ describe('PhotoRepository', () => {
       expect(photos.length).toBeGreaterThanOrEqual(1);
     });
   });
+
+  describe('findByViews', () => {
+    it('should return empty', async () => {
+      const photos = await photoRepository.findByViews(3);
+      expect(photos).toHaveLength(0);
+    });
+  });
+
 });
