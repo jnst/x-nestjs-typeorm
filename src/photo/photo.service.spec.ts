@@ -1,0 +1,8 @@
+
+describe('PhotoService', () => {
+
+  beforeAll(() => {
+
+  });
+
+});
