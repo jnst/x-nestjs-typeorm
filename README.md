@@ -29,6 +29,10 @@ $ docker container stop x-nestjs-typeorm
 ## Run app
 
 ```bash
+$ yarn db:sync
+```
+
+```bash
 $ yarn start
 $ open http://localhost:3000/photo
 ```
